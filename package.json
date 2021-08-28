@@ -1,6 +1,6 @@
 {
-  "name": "react-stockcharts",
-  "version": "0.7.8",
+  "name": "@cryptobot/react-stockcharts",
+  "version": "2.0.3",
   "description": "Highly customizable stock charts with ReactJS and d3",
   "main": "src/index.js",
   "module": "src/index.js",
@@ -133,10 +133,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/rrag/react-stockcharts.git"
+    "url": "https://github.com/allandy/react-stockcharts.git"
   },
   "bugs": {
-    "url": "https://github.com/rrag/react-stockcharts/issues"
+    "url": "https://github.com/allandy/react-stockcharts/issues"
   },
   "maintainers": [
     {

@@ -18,15 +18,23 @@ class SvgPathAnnotation extends Component {
 		}
 	}
 	render() {
-		const { className, stroke, opacity } = this.props;
+		const { className, stroke, opacity, style } = this.props;
 		const { xAccessor, xScale, yScale, path } = this.props;
 
 		const { x, y, fill, tooltip } = helper(this.props, xAccessor, xScale, yScale);
 
-		return (<g className={className} onClick={this.handleClick}>
-			<title>{tooltip}</title>
-			<path d={path({ x, y })} stroke={stroke} fill={fill} opacity={opacity} />
-		</g>);
+		return (
+			<g className={className} onClick={this.handleClick}>
+				<title>{tooltip}</title>
+				<path
+					d={path({ x, y })}
+					stroke={stroke}
+					fill={fill}
+					opacity={opacity}
+					style={style}
+				/>
+			</g>
+		);
 	}
 }
 
@@ -57,6 +65,7 @@ SvgPathAnnotation.propTypes = {
 	stroke: PropTypes.string,
 	fill: PropTypes.string,
 	opacity: PropTypes.number,
+	style: PropTypes.object,
 };
 
 SvgPathAnnotation.defaultProps = {
