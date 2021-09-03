@@ -36,21 +36,34 @@ class ClickableShape extends Component {
 		return false;
 	}
 	drawOnCanvas(ctx, moreProps) {
-		const { stroke, strokeWidth, strokeOpacity, hovering, textBox } = this.props;
+		const {
+			stroke,
+			strokeWidth,
+			strokeOpacity,
+			hovering,
+			textBox,
+			deleteable,
+		} = this.props;
 
 		const [x, y] = helper(this.props, moreProps, ctx);
 
 		this.closeIcon = { x, y };
+		// if (this.closeIcon.show) {
 		ctx.beginPath();
 
 		ctx.lineWidth = hovering ? strokeWidth + 1 : strokeWidth;
 		ctx.strokeStyle = hexToRGBA(stroke, strokeOpacity);
 		const halfWidth = textBox.closeIcon.width / 2;
-		ctx.moveTo(x - halfWidth, y - halfWidth);
-		ctx.lineTo(x + halfWidth, y + halfWidth);
-		ctx.moveTo(x - halfWidth, y + halfWidth);
-		ctx.lineTo(x + halfWidth, y - halfWidth);
-		ctx.stroke();
+		// This draws X close box
+		if (deleteable) {
+			ctx.moveTo(x - halfWidth, y - halfWidth);
+			ctx.lineTo(x + halfWidth, y + halfWidth);
+			ctx.moveTo(x - halfWidth, y + halfWidth);
+			ctx.lineTo(x + halfWidth, y - halfWidth);
+			ctx.stroke();
+		}
+		// }
+
 	}
 	renderSVG() {
 		throw new Error("svg not implemented");
@@ -112,6 +125,7 @@ ClickableShape.propTypes = {
 	onHover: PropTypes.func,
 	onUnHover: PropTypes.func,
 	onClick: PropTypes.func,
+	deleteable: PropTypes.bool
 };
 
 

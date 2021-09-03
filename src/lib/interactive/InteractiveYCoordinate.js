@@ -142,6 +142,7 @@ InteractiveYCoordinate.propTypes = {
 					left: PropTypes.number.isRequired,
 					right: PropTypes.number.isRequired,
 				}),
+				hide: PropTypes.bool,
 				width: PropTypes.number.isRequired,
 			})
 		}).isRequired,
@@ -188,6 +189,7 @@ InteractiveYCoordinate.defaultProps = {
 			closeIcon: {
 				padding: { left: 5, right: 8 },
 				width: 8,
+				hide: false
 			}
 		},
 		edge: {

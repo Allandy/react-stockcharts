@@ -95,6 +95,7 @@ class EachInteractiveYCoordinate extends Component {
 			edge,
 			textBox,
 			draggable,
+			deleteable,
 		} = this.props;
 		const { hover, closeIconHover } = this.state;
 
@@ -118,9 +119,7 @@ class EachInteractiveYCoordinate extends Component {
 					hovering={hover || closeIconHover}
 					interactiveCursorClass="react-stockcharts-move-cursor"
 					{...hoverHandler}
-
 					{...dragProps}
-
 					yValue={yValue}
 					bgFill={bgFill}
 					bgOpacity={bgOpacity}
@@ -136,6 +135,7 @@ class EachInteractiveYCoordinate extends Component {
 					text={text}
 					textBox={textBox}
 					edge={edge}
+					deleteable={deleteable}
 				/>
 				<ClickableShape
 					show
@@ -147,13 +147,12 @@ class EachInteractiveYCoordinate extends Component {
 					fontWeight={fontWeight}
 					fontSize={fontSize}
 					textBox={textBox}
-
 					stroke={stroke}
 					strokeOpacity={strokeOpacity}
-
 					onHover={this.handleCloseIconHover}
 					onUnHover={this.handleCloseIconHover}
 					onClick={this.handleDelete}
+					deleteable={deleteable}
 				/>
 				{/* <HoverTextNearMouse
 					show={hoverTextEnabled && hover && !selected}
@@ -169,7 +168,7 @@ EachInteractiveYCoordinate.propTypes = {
 
 	draggable: PropTypes.bool.isRequired,
 	yValue: PropTypes.number.isRequired,
-
+	deleteable: PropTypes.bool.isRequired,
 	bgFill: PropTypes.string.isRequired,
 	bgOpacity: PropTypes.number.isRequired,
 	stroke: PropTypes.string.isRequired,
@@ -203,6 +202,7 @@ EachInteractiveYCoordinate.defaultProps = {
 	selected: false,
 	fill: "#FFFFFF",
 	draggable: false,
+	deleteable: true
 };
 
 export default EachInteractiveYCoordinate;

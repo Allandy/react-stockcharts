@@ -159,6 +159,7 @@ class CandleStickChartWithInteractiveYCoordinate extends React.Component {
 					yValue: 55.90,
 					id: shortid.generate(),
 					draggable: true,
+					deleteable: false
 				},
 				{
 					...buy,

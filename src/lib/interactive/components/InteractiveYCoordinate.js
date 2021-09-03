@@ -61,6 +61,7 @@ class InteractiveYCoordinate extends Component {
 			text,
 			textBox,
 			edge,
+			deleteable
 		} = this.props;
 
 		const { selected, hovering } = this.props;
@@ -81,13 +82,21 @@ class InteractiveYCoordinate extends Component {
 		ctx.textBaseline = "middle";
 		ctx.textAlign = "start";
 		ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`;
-
-		this.width = textBox.padding.left
+		if (deleteable) {
+			this.width = textBox.padding.left
 			+ ctx.measureText(text).width
 			+ textBox.padding.right
 			+ textBox.closeIcon.padding.left
 			+ textBox.closeIcon.width
 			+ textBox.closeIcon.padding.right;
+		} else {
+			this.width =
+                textBox.padding.left +
+                ctx.measureText(text).width +
+                textBox.padding.right +
+                textBox.closeIcon.padding.left;
+		}
+
 
 		ctx.setLineDash(getStrokeDasharrayCanvas(strokeDasharray));
 		ctx.moveTo(x1, y);
@@ -189,10 +198,8 @@ InteractiveYCoordinate.propTypes = {
 	textFill: PropTypes.string.isRequired,
 	fontFamily: PropTypes.string.isRequired,
 	fontSize: PropTypes.number.isRequired,
-	fontWeight: PropTypes.oneOfType([
-		PropTypes.number,
-		PropTypes.string,
-	]).isRequired,
+	fontWeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+		.isRequired,
 	fontStyle: PropTypes.string.isRequired,
 
 	text: PropTypes.string.isRequired,
@@ -212,6 +219,7 @@ InteractiveYCoordinate.propTypes = {
 	tolerance: PropTypes.number.isRequired,
 	selected: PropTypes.bool.isRequired,
 	hovering: PropTypes.bool.isRequired,
+	deleteable: PropTypes.bool
 };
 
 InteractiveYCoordinate.defaultProps = {
@@ -225,6 +233,7 @@ InteractiveYCoordinate.defaultProps = {
 	tolerance: 4,
 	selected: false,
 	hovering: false,
+	deleteable: true
 };
 
 export default InteractiveYCoordinate;
